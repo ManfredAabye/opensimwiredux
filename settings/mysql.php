@@ -2,13 +2,13 @@
 // Projekt opensimwiredux 2025
 
 // Definieren der erforderlichen Konstanten
-// define('C_CODES_TBL', 'codes_table');
-// define('C_USERS_TBL', 'users_table');
-// define('C_WIUSR_TBL', 'wiusr_table');
-// define('C_DB_HOST', 'localhost');
-// define('C_DB_NAME', 'database_name');
-// define('C_DB_USER', 'database_user');
-// define('C_DB_PASS', 'database_password');
+// define('C_CODES_TBL', 'wi_codetable'); // Beispiel: Name der Codes-Tabelle
+// define('C_USERS_TBL', 'wi_users');    // Beispiel: Name der Benutzer-Tabelle
+// define('C_WIUSR_TBL', 'wi_wiusr');    // Beispiel: Name der WI-User-Tabelle
+// define('C_DB_HOST', 'localhost');     // Datenbank-Host
+// define('C_DB_NAME', 'deine_datenbank'); // Datenbank-Name
+// define('C_DB_USER', 'dein_benutzer'); // Datenbank-Benutzer
+// define('C_DB_PASS', 'dein_passwort'); // Datenbank-Passwort
 
 // Standardwert für $unconfirmed_deltime
 $unconfirmed_deltime = 24; // Beispielwert in Stunden
@@ -117,20 +117,35 @@ class DB
     public function query($Query_String, $params = [])
     {
         $this->connect();
+
+        // Vorbereitetes Statement verwenden, wenn Parameter vorhanden sind
         if (!empty($params)) {
             $stmt = $this->Link_ID->prepare($Query_String);
             if ($stmt === false) {
                 $this->halt("Prepare failed: " . $this->Link_ID->error);
             }
+
+            // Parameter binden
             $types = str_repeat('s', count($params)); // Annahme: alle Parameter sind Strings
             $stmt->bind_param($types, ...$params);
+
+            // Statement ausführen
             $stmt->execute();
-            $this->Query_ID = $stmt->get_result();
+
+            // Ergebnis holen (nur für SELECT-Abfragen)
+            if (strpos(strtoupper($Query_String), 'SELECT') === 0) {
+                $this->Query_ID = $stmt->get_result();
+            } else {
+                $this->Query_ID = true; // Für INSERT, UPDATE, DELETE
+            }
+
             $stmt->close();
         } else {
+            // Normale Abfrage ohne Parameter
             $this->Query_ID = $this->Link_ID->query($Query_String);
         }
 
+        // Fehlerbehandlung
         $this->Row = 0;
         $this->Errno = $this->Link_ID->errno;
         $this->Error = $this->Link_ID->error;

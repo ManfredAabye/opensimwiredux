@@ -45,7 +45,9 @@ function Form(theForm) {
 <?php
 $DbLink = new DB();
 $DbLink->query("SELECT id, code, sitename, url, target FROM " . C_PAGE_TBL . " WHERE active='1' AND type='1' AND ((display='0') OR (display='2')) ORDER BY rank ASC");
-while (list($siteid, $sitecode, $sitename, $siteurl, $sitetarget) = $DbLink->next_record()) {
+while ($record = $DbLink->next_record()) {
+    if (!empty($record)) {
+        list($siteid, $sitecode, $sitename, $siteurl, $sitetarget) = $record;
 ?>
     <tr>
         <td>
@@ -83,7 +85,9 @@ while (list($siteid, $sitecode, $sitename, $siteurl, $sitetarget) = $DbLink->nex
     if ($_GET['btn'] == $siteid) {
         $DbLink1 = new DB();
         $DbLink1->query("SELECT id, code, sitename, url, target FROM " . C_PAGE_TBL . " WHERE active='1' AND type='2' AND ((display='0') OR (display='2')) AND code='$sitecode' ORDER BY rank ASC");
-        while (list($subsiteid, $subsitecode, $subsitename, $subsiteurl, $subsitetarget) = $DbLink1->next_record()) {
+        while ($subrecord = $DbLink1->next_record()) {
+            if (!empty($subrecord)) {
+                list($subsiteid, $subsitecode, $subsitename, $subsiteurl, $subsitetarget) = $subrecord;
     ?>
             <tr>
                 <td>
@@ -118,6 +122,7 @@ while (list($siteid, $sitecode, $sitename, $siteurl, $sitetarget) = $DbLink->nex
                 </td>
             </tr>
     <?php
+            }
         }
     }
     ?>
@@ -125,6 +130,7 @@ while (list($siteid, $sitecode, $sitename, $siteurl, $sitetarget) = $DbLink->nex
         <td><span class="boxspace">.</span></td>
     </tr>
 <?php
+    }
 }
 ?>
     <tr>
@@ -150,7 +156,7 @@ while (list($siteid, $sitecode, $sitename, $siteurl, $sitetarget) = $DbLink->nex
                         <td width="296" height="31">
                             <div align="center"><span class="style2">
                                 <?php
-                                if ($_GET['error']) {
+                                if (isset($_GET['error'])) {
                                     echo "<font color='#FF0000'><b>" . htmlspecialchars($_GET['error']) . "</b></font>";
                                 }
                                 ?>
