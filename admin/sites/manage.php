@@ -1,4 +1,4 @@
-<?
+<?php
 if($_SESSION[ADMINUID] == $ADMINCHECK){
 
 if($_SESSION[ADMINUID] == "") {

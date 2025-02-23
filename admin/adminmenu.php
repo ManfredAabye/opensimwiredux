@@ -1,4 +1,4 @@
-<?
+<?php
 $DbLink = new DB;
 $DbLink->query("SELECT userdir,griddir,assetdir FROM ".C_ADM_TBL."");
 list($USERDIR,$GRIDDIR,$ASSETDIR) = $DbLink->next_record();
@@ -20,16 +20,16 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 <table width="245" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="Stil9">
-	  <? if($CHUSR == $CHWIUSR){?>
-	  <? }else { ?>
+	  <?php if($CHUSR == $CHWIUSR){?>
+	  <?php }else { ?>
 	  <div align="center">
 	  <span class="Stil10" ><a style="color:#FFFFFF" href="index.php?page=updatedb">Update Userdb </a></span>
 	  <br /><br /></div>
-	  <? } ?>
+	  <?php } ?>
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'home'){
+		<?php if($_SESSION[page]== 'home'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -52,7 +52,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'settings'){
+		<?php if($_SESSION[page]== 'settings'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -70,7 +70,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'pagemanager'){
+		<?php if($_SESSION[page]== 'pagemanager'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -88,7 +88,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'createacc'){
+		<?php if($_SESSION[page]== 'createacc'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -106,7 +106,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'manage'){
+		<?php if($_SESSION[page]== 'manage'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -124,7 +124,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'loginscreen'){
+		<?php if($_SESSION[page]== 'loginscreen'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -142,7 +142,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'changepw'){
+		<?php if($_SESSION[page]== 'changepw'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -165,7 +165,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'regions'){
+		<?php if($_SESSION[page]== 'regions'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -177,14 +177,14 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	
 	</td>
   </tr>
-  <? if($GRIDDIR){?>
+  <?php if($GRIDDIR){?>
   <tr>
     <td>
 	
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'gridlog'){
+		<?php if($_SESSION[page]== 'gridlog'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -196,7 +196,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	
 	</td>
   </tr>
-  <?
+  <?php
   }
   if($USERDIR){?>
   <tr>
@@ -205,7 +205,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'userlog'){
+		<?php if($_SESSION[page]== 'userlog'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -217,7 +217,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	
 	</td>
   </tr>
-  <? 
+  <?php 
   } 
  if($ASSETDIR){?>
  <tr>
@@ -226,7 +226,7 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'assetlog'){
+		<?php if($_SESSION[page]== 'assetlog'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -243,14 +243,14 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
   
   </td>
   </tr>
-  <? } ?>
+  <?php } ?>
   <tr>
     <td>
 	
 	<table width="90%" align="center" border="0" class="Stil9">
       <tr>
         <td style="cursor:pointer;font-weight:bold;"
-		<? if($_SESSION[page]== 'logout'){
+		<?php if($_SESSION[page]== 'logout'){
 		echo"background=\"../images/main/menu_selected.jpg\""; 
 		}else {  
 		echo"background=\"../images/main/menu_unselected.jpg\""; 
@@ -269,4 +269,4 @@ if($_SESSION[ADMINUID] == $ADMINCHECK){
     <td>&nbsp;</td>
   </tr>
 </table>
-<? } ?>
+<?php } ?>

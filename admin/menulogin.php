@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
  * Copyright (c) 2007, 2008 Contributors, http://opensimulator.org/
